@@ -7,4 +7,5 @@
 ## Commands
 - ```composer install```
 - ```php artisan jwt:secret```
+- ```php artisan migrate```
 - ```php artisan serve```

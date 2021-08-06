@@ -20,6 +20,10 @@ Route::post('/logout', 'UserAuthController@logout');
 
 });
 
+
+Route::post('/customer/register', 'CustomerController@store');
+Route::get('/customer', 'CustomerController@index');
+
 Route::group(['prefix'=>'user','middleware' => ['jwt.verify']], function() {
     
 });
