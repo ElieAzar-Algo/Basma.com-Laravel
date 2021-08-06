@@ -7,19 +7,7 @@ use App\User;
 
 class UserAuthController extends Controller
 {
-    public function register(Request $request)
-    {
-        $user = User::create([
-             'name' => $request->name,
-             'email'    => $request->email,
-             'password' => $request->password,
-         ]);
-
-        $token = auth()->guard('user_api')->login($user);
-
-        return $this->respondWithToken($token);
-    }
-
+    
     public function login()
     {
         $credentials = request(['email', 'password']);
