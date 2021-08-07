@@ -22,7 +22,7 @@ Route::post('/logout', 'UserAuthController@logout');
 
 
 Route::post('/customer/register', 'CustomerController@store');
-Route::get('/customer', 'CustomerController@index');
+Route::get('/customer/items/{items}', 'CustomerController@index');
 
 Route::group(['prefix'=>'user','middleware' => ['jwt.verify']], function() {
     

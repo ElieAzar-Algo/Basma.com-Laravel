@@ -12,9 +12,24 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($items)
     {
-        $customers = Customer::paginate(2);
+        
+        if (request()->has('field') && request()->has('search'))
+        {
+            $field = request()->field;
+            $search = request()->search;
+
+            $customers = Customer::where($field, 'LIKE', $search.'%')
+            ->orderBy('id','desc')
+            ->paginate($items)
+            ->appends('search', request('search'));
+        }
+        else 
+        {
+            $customers = Customer::orderBy('id','desc')
+            ->paginate($items);
+        }
 
         if($customers)
         {
