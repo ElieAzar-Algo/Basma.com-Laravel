@@ -20,10 +20,13 @@ class CustomerController extends Controller
             $field = request()->field;
             $search = request()->search;
 
-            $customers = Customer::where($field, 'LIKE', $search.'%')
+            $customers = Customer::where($field, 'LIKE', '%'.$search.'%')
             ->orderBy('id','desc')
             ->paginate($items)
-            ->appends('search', request('search'));
+            ->appends([
+                'field'=> request('field'),
+                'search'=> request('search')
+                ]);
         }
         else 
         {
