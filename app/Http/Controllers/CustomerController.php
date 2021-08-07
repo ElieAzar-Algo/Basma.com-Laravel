@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class CustomerController extends Controller
 {
@@ -54,16 +56,6 @@ class CustomerController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -93,48 +85,57 @@ class CustomerController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Customer $customer)
+    public function getAverage($range)
     {
-        //
-    }
+        
+        $customer = Customer::where('created_at', '>', Carbon::now()->subDays($range))->count(); 
+        
+        if($range == 1)
+        {
+            $average = $customer / 24;
+            $timeFrame = 'Per Hour';
+        }
+        elseif($range == 7)
+        {
+            $average = $customer / 7;
+            $timeFrame = 'Per Day';
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Customer $customer)
-    {
-        //
-    }
+        }
+        elseif($range == 30)
+        {
+            $average = $customer / 4;
+            $timeFrame = 'Per Week';
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Customer $customer)
-    {
-        //
-    }
+        }
+        elseif($range == 90)
+        {
+            $average = $customer / 3;
+            $timeFrame = 'Per Month';
+        }
+        elseif($range == 365)
+        {
+            $average = $customer / 12;
+            $timeFrame = 'Per Month';
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Customer $customer)
-    {
-        //
+        if ($customer)
+        {
+            return response()->json([
+
+                'success' => true,
+                'message' => 'Operation succeeded',
+                'total'    => $customer,
+                'average'    => $average,
+                'time_frame'    => $timeFrame,
+            ],200);
+        }
+        else
+        {
+            return response()->json([
+
+                'success' => false,
+                'message' => 'Operation failed',
+            ],500);
+        }
     }
 }
