@@ -13,6 +13,16 @@ class CustomSeeder extends Migration
      */
     public function up()
     {
+
+        $users = array(
+            array(
+                "name"       => "Elie Azar",
+                "email"      => "elie.azar@mail.com",
+                "password"   => bcrypt("1234"), 
+            )
+        );
+
+
         $customers = array(
             array(
                 
@@ -326,6 +336,7 @@ class CustomSeeder extends Migration
             ),
         );
 
+        DB::table('users')->insert($users);
         DB::table('customers')->insert($customers);
     }
 
