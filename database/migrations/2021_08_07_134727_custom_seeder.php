@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
+
 
 class CustomSeeder extends Migration
 {
@@ -31,7 +33,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Beirut, Baabda, Butchay",
-                "created_at" => '2021-05-03 17:51:45',
+                "created_at" => Carbon::now()->subDays(25),
                 
             ),
             array(
@@ -41,7 +43,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Beirut, Ashrafieh, Sassin",
-                "created_at" => '2021-06-03 17:51:45',
+                "created_at" => Carbon::now()->subDays(11),
 
                 
             ),
@@ -53,7 +55,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Mont-Liban, Hammana, Route 21",
-                "created_at" => '2021-06-04 17:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subWeeks(10),
 
                 
             ),
@@ -65,7 +67,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Gulf, Dubai, Route 21",  
-                "created_at" => '2021-06-04 17:51:45',
+                "created_at" => Carbon::now()->subDays(10),
 
             ),
 
@@ -77,7 +79,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Baabda, Route 21",
-                "created_at" => '2021-07-02 17:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subWeeks(6),
 
             ),
 
@@ -88,7 +90,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Africa, Oganda, Route 21",  
-                "created_at" => '2021-07-05 17:51:45',
+                "created_at" => Carbon::now()->subWeeks(5),
 
             ),
 
@@ -99,7 +101,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Gulf, Qatar, Route 21",  
-                "created_at" => '2021-07-10 17:51:45',
+                "created_at" => Carbon::now()->subDays(29),
 
             ),
 
@@ -111,7 +113,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "KSA, Riyadh, Route 21", 
-                "created_at" => '2021-07-15 11:51:45',
+                "created_at" => Carbon::now()->subDays(24),
 
             ),
 
@@ -122,7 +124,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "France, Paris, Route 21",  
-                "created_at" => '2021-07-20 12:51:45',
+                "created_at" => Carbon::now()->subDays(19),
 
             ),
 
@@ -133,7 +135,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Baabda, Route 21",
-                "created_at" => '2021-07-28 13:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subDays(11),
 
             ),
 
@@ -144,7 +146,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "UK, London, Route 21", 
-                "created_at" => '2021-07-28 14:51:45',
+                "created_at" => Carbon::now()->subHour(1)->subDays(11),
 
             ),
 
@@ -155,7 +157,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "UK, London, Route 21", 
-                "created_at" => '2021-07-28 14:59:45',
+                "created_at" => Carbon::now()->subDays(11),
 
             ),
 
@@ -166,7 +168,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "UK, London, Route 21",  
-                "created_at" => '2021-07-30 12:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subDays(9),
 
             ),
 
@@ -177,7 +179,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "USA, California, Route 21", 
-                "created_at" => '2021-07-30 12:51:45',
+                "created_at" => Carbon::now()->subHour(1)->subDays(9),
 
             ),
 
@@ -188,7 +190,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Africa, Cote-D'voire, Route 21", 
-                "created_at" => '2021-07-30 12:51:45',
+                "created_at" => Carbon::now()->subDays(9),
 
             ),
 
@@ -199,7 +201,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "KSA, Riyadh, Route 21", 
-                "created_at" => '2021-08-01  12:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subDays(7),
 
             ),
 
@@ -210,7 +212,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "KSA, Riyadh, Route 21", 
-                "created_at" => '2021-08-02  12:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subDays(6),
 
             ),
 
@@ -221,7 +223,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Norway, Oslo, Route 21",
-                "created_at" => '2021-08-03  12:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subDays(5),
 
             ),
 
@@ -232,7 +234,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Sweden, Stockholm, Route 21", 
-                "created_at" => '2021-08-03  13:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subDays(4),
 
             ),
 
@@ -243,7 +245,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Aley, Route 21", 
-                "created_at" => '2021-08-03  15:51:45',
+                "created_at" => Carbon::now()->subHour(1)->subDays(4),
 
             ),
 
@@ -254,7 +256,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Aramoun, Route 21", 
-                "created_at" => '2021-08-04  15:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subDays(3),
 
             ),
 
@@ -265,7 +267,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Baabda, Route 21",  
-                "created_at" => '2021-08-05 15:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subDays(2),
 
             ),
 
@@ -276,7 +278,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Baabda, Route 21", 
-                "created_at" => '2021-08-06 15:51:45',
+                "created_at" => Carbon::now()->subHour(2)->subDays(1),
 
             ),
 
@@ -287,7 +289,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Baabda, Route 21", 
-                "created_at" => '2021-08-07 02:51:45',
+                "created_at" =>  Carbon::now()->subHour(5),
 
             ),
 
@@ -298,7 +300,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Baabda, Route 21", 
-                "created_at" => '2021-08-07 10:51:45',
+                "created_at" => Carbon::now()->subHour(4),
 
             ),
 
@@ -309,7 +311,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Baabda, Route 21", 
-                "created_at" => '2021-08-07 15:51:45',
+                "created_at" => Carbon::now()->subHour(3),
 
             ),
 
@@ -320,7 +322,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Baabda, Route 21", 
-                "created_at" => '2021-08-07 19:51:45',
+                "created_at" => Carbon::now()->subHour(1),
 
             ),
 
@@ -331,7 +333,7 @@ class CustomSeeder extends Migration
                 "password"   => bcrypt("1234"),
                 "phone"      => "70647025",
                 "address"    => "Lebanon, Baabda, Route 21", 
-                "created_at" => '2021-08-07 23:51:45',
+                "created_at" => Carbon::now(),
 
             ),
         );

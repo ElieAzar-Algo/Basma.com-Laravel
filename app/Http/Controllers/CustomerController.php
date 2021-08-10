@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use App\Customer;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Http\Requests\AddCustomerValidation;
+use Illuminate\Support\Facades\Log;
 
 
 class CustomerController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($items)
-    {
-        
+    public function index($items){
+    
         if (request()->has('field') && request()->has('search'))
         {
             $field = request()->field;
@@ -26,8 +29,8 @@ class CustomerController extends Controller
             ->orderBy('id','desc')
             ->paginate($items)
             ->appends([
-                'field'=> request('field'),
-                'search'=> request('search')
+                'field'  => request('field'),
+                'search' => request('search')
                 ]);
         }
         else 
@@ -55,14 +58,20 @@ class CustomerController extends Controller
         }
     }
 
+
+
+
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(AddCustomerValidation $request){
+        
+        Log::info($request->all());
+        // dd();
         $customer = new Customer;
         $customer->fill($request->all());
         
@@ -85,10 +94,15 @@ class CustomerController extends Controller
         }
     }
 
-    public function getAverage($range)
-    {
-        
-        $customer = Customer::where('created_at', '>', Carbon::now()->subDays($range))->count(); 
+
+
+
+
+    public function getAverage($range){
+
+        $all_customers = Customer::count();
+        $customers_data = Customer::where('created_at', '>', Carbon::now()->subDays($range))->get('created_at'); 
+        $customer = $customers_data->count();
         
         if($range == 1)
         {
@@ -118,15 +132,17 @@ class CustomerController extends Controller
             $timeFrame = 'Per Month';
         }
 
-        if ($customer)
+        if ($customers_data)
         {
             return response()->json([
 
-                'success' => true,
-                'message' => 'Operation succeeded',
-                'total'    => $customer,
+                'success'    => true,
+                'message'    => 'Operation succeeded',
+                'data'       => $customers_data,
+                'total'      => $customer,
                 'average'    => $average,
-                'time_frame'    => $timeFrame,
+                'time_frame' => $timeFrame,
+                'all_customers' => $all_customers,
             ],200);
         }
         else
