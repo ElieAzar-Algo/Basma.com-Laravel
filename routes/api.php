@@ -24,6 +24,9 @@ Route::post('/logout', 'UserAuthController@logout');
 Route::post('/customer/register', 'CustomerController@store');
 Route::get('/customer/items/{items}', 'CustomerController@index');
 Route::get('/customer/range/{range}', 'CustomerController@getAverage');
+Route::get('/HerokuTest',function(){
+    dd("test");
+});
 
 Route::group(['prefix'=>'user','middleware' => ['jwt.verify']], function() {
     
