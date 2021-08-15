@@ -29,6 +29,7 @@ class AddCustomerValidation extends FormRequest
             'phone'    => 'required|min:8',
             'address'  => 'required',
             'password' => 'required',
+           
         ];
     }
 
@@ -44,7 +45,7 @@ class AddCustomerValidation extends FormRequest
             'mobile.min' => 'Mobile number must be minimum 8 numbers including country code',
             'address.required' => 'Address is required',
             'password.required' => 'Password is required',
-
+            
         ];
     }
 }

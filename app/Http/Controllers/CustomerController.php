@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Requests\AddCustomerValidation;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 
 class CustomerController extends Controller
@@ -69,20 +70,50 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AddCustomerValidation $request){
-        
+       
+        $response = Http::asForm()->post(env("GOOGLE_RECAPTCHA_URL"), [
+            'secret' => env("GOOGLE_RECAPTCHA_SECRET"),
+            'response' => $request->recaptcha_token,
+            'remoteip' => $request->ip(),
+        ]);
+        Log::info($response);
+        Log::info($response['success']);
         Log::info($request->all());
         // dd();
-        $customer = new Customer;
-        $customer->fill($request->all());
-        
-        if ($customer->save())
+        if($response)
         {
-            return response()->json([
 
-                'success' => true,
-                'message' => 'Operation succeeded',
-                'data'    => $customer,
-            ],200);
+            if($response['success'])
+            {
+                $customer = new Customer;
+                $customer->fill($request->all());
+            
+                if ($customer->save())
+                {
+                    return response()->json([
+
+                        'success' => true,
+                        'message' => 'Operation succeeded',
+                        'data'    => $customer,
+                    ],200);
+                }
+                else
+                {
+                    return response()->json([
+
+                        'success' => false,
+                        'message' => 'Operation failed',
+                    ],500);
+                }
+            }else
+            {
+                return response()->json([
+
+                    'success' => false,
+                    'message' => 'Operation failed',
+                    'errors'=>['recaptcha_token'=>'reCAPTCHA verification failed.']
+                ],422);
+            }
         }
         else
         {
@@ -90,7 +121,8 @@ class CustomerController extends Controller
 
                 'success' => false,
                 'message' => 'Operation failed',
-            ],500);
+                'errors'=>['recaptcha_token'=>'reCAPTCHA is required.']
+            ],404);
         }
     }
 
