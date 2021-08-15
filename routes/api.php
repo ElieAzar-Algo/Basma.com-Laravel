@@ -19,16 +19,16 @@ Route::post('/login', 'UserAuthController@login');
 Route::post('/logout', 'UserAuthController@logout');
 
 });
-
-
-Route::post('/customer/register', 'CustomerController@store');
-Route::get('/customer/items/{items}', 'CustomerController@index');
-Route::get('/customer/range/{range}', 'CustomerController@getAverage');
-Route::get('/HerokuTest',function(){
-    dd("test");
+Route::get('/auto-deploy-test', function(){
+    dd('deployed automatically');
 });
 
-Route::group(['prefix'=>'user','middleware' => ['jwt.verify']], function() {
+Route::post('/customer/register', 'CustomerController@store');
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+
+    Route::get('/customer/items/{items}', 'CustomerController@index');
+    Route::get('/customer/range/{range}', 'CustomerController@getAverage'); 
     
 });
 
