@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Http\Requests\AddCustomerValidation;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Mail;
 
 
 class CustomerController extends Controller
@@ -184,6 +185,27 @@ class CustomerController extends Controller
                 'success' => false,
                 'message' => 'Operation failed',
             ],500);
+        }
+    }
+
+    public function sendDailyData()
+    {
+        $customers = Customer::where('created_at', '>', Carbon::now()->subDays(1))->count();
+        
+        $mailData= array(
+            'message' => "$customers",
+        );
+        
+        if($customers)
+        {
+            
+            Mail::send('mail',["data"=>$mailData], function($message)
+            {
+    
+                $message->from(config('mail.from_email'));
+                $message->to(config('mail.to_email'), 'Basma')->subject('Basma New Registered Customers');
+                
+            }); 
         }
     }
 }

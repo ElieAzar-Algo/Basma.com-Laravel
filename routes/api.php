@@ -24,6 +24,7 @@ Route::get('/auto-deploy-test', function(){
 });
 
 Route::post('/customer/register', 'CustomerController@store');
+Route::get('/cron-job-email', 'CustomerController@sendDailyData');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
 

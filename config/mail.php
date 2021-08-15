@@ -32,6 +32,8 @@ return [
     |            "postmark", "log", "array"
     |
     */
+    'from_email'=>env('MAIL_FR_ADDRESS'),
+    'to_email' =>env('MAIL_TO_ADDRESS'),
 
     'mailers' => [
         'smtp' => [
